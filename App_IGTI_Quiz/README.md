@@ -20,8 +20,8 @@ App de perguntas utilizando Java nativo, com as seguintes funcionalidades.
 # Screens
 
 
-![enter image description here](https://logodownload.org/wp-content/uploads/2014/09/twitter-logo-1.png =100x40)
+![Telas](https://github.com/ejailes/Projetos_Livres/blob/master/App_IGTI_Quiz/img/screens_01.png)
 
-![enter image description here](https://github.com/ejailes/Projetos_Livres/blob/master/App_IGTI_Quiz/img/screens_02.png =100x40)
+![Telas](https://github.com/ejailes/Projetos_Livres/blob/master/App_IGTI_Quiz/img/screens_02.png)
 
 **Arquivo apk(igtiQuiz.apk) do app na pasta raiz**
