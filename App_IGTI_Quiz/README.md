@@ -1,9 +1,9 @@
 # IGTI Quiz
 
-App de perguntas utilizando Java nativo, com as seguintes funcionalidades.
+App de perguntas utilizando Android Nativo com Java, com as seguintes funcionalidades.
 
-  - Login e Cadastro de Usuário
-  - Cadastro, alteração e exclusão de perguntas.
+  - Login é Cadastro de Usuário
+  - Cadastro, alteração é exclusão de perguntas.
   - Tela de resultado de acertos.
 
 # Elementos Utilizados
