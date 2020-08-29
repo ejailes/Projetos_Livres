@@ -2,8 +2,8 @@
 
 App de perguntas utilizando Android Nativo com Java, com as seguintes funcionalidades.
 
-  - Login é Cadastro de Usuário
-  - Cadastro, alteração é exclusão de perguntas.
+  - Login e Cadastro de Usuário
+  - Cadastro, alteração e exclusão de perguntas.
   - Tela de resultado de acertos.
 
 # Elementos Utilizados
@@ -15,7 +15,7 @@ App de perguntas utilizando Android Nativo com Java, com as seguintes funcionali
 # Persistência de dados
 
   - SQLite (para armazenar perguntas e usuários)
-  - SharedPreferences (Para verificar se usuário marcou lembrar senha)
+  - SharedPreferences (para verificar se usuário marcou lembrar senha)
 
 # Screens
 
