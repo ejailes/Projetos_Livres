@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:body>
+
+	<ui:composition template="WEB-INF/templates/rootTemplate.xhtml">
+
+		<ui:define name="title">Home</ui:define>
+
+		<ui:define name="body">
+
+			<p:messages id="msg" autoUpdate="true" />
+
+			<h:form id="form">
+
+				<p:panel header="Cadastrar Remédio">
+					<p:panelGrid styleClass="ui-noborder" columns="2">
+						<p:outputLabel for="nome" value="Medicamento:" />
+						<p:inputText id="nome" required="true"
+							requiredMessage="Campo Medicamento é Obrigatorio"
+							value="#{medBean.med.nome}" />
+
+						<p:outputLabel for="prescricao" value="Prescrição Padrão:" />
+						<p:inputText id="prescricao" required="true"
+							requiredMessage="Campo Prescrição é Obrigatorio"
+							value="#{medBean.med.prescricao}" />
+
+						<p:outputLabel for="lab" value="Laboratório:" />
+						<p:selectOneMenu required="true"
+							requiredMessage="Você deve selecionar um Laboratorio" id="lab"
+							style="width:84%" value="#{medBean.med.foreignKeyLab}">
+							<f:selectItem itemLabel="Selecione" />
+							<f:selectItems var="laboratorio" value="#{medBean.getLabs()}"
+								itemValue="#{laboratorio.id}" itemLabel="#{laboratorio.nome}" />
+						</p:selectOneMenu>
+
+						<p:outputLabel for="reg_ms" value="Registro MS:" />
+						<p:inputMask id="reg_ms" size="3" mask="9?9999" required="true"
+							value="#{medBean.med.registroMS}"
+							requiredMessage="Campo Registro MS é Obrigatorio"
+							validatorMessage="Registro deve conter 5 numeros">
+							<f:validateLength maximum="5" minimum="5" />
+						</p:inputMask>
+
+						<p:outputLabel for="preco" value="Preço:" />
+						<p:inputNumber id="preco" required="true"
+							value="#{medBean.med.preco}"
+							requiredMessage="Campo Preço é Obrigatorio"
+							validatorMessage="Preço mínimo deve ser R$ 10,00">
+
+							<f:validateDoubleRange minimum="10" />
+
+						</p:inputNumber>
+
+						<h:panelGroup>
+							<p:commandButton value="Cadastrar"
+								action="#{medBean.salvarMedicamento}"
+								update="form, :tabMedicamentos" />
+						</h:panelGroup>
+
+					</p:panelGrid>
+
+				</p:panel>
+
+			</h:form>
+
+			<br />
+
+			<p:dataTable value="#{medBean.med.selectMedicamentos()}" var="med" rows="5"
+				id="tabMedicamentos" paginator="true">
+
+				<f:facet name="header">Lista de Remédios</f:facet>
+
+				<p:column headerText="Id" width="4%"
+					styleClass="centeredColumnContent">
+					<p:outputLabel value="#{med.id}" />
+				</p:column>
+
+				<p:column headerText="Medicamento">
+					<p:outputLabel value="#{med.nome}" />
+				</p:column>
+
+				<p:column headerText="Prescrição Padrão">
+					<p:outputLabel value="#{med.prescricao}" />
+				</p:column>
+
+				<p:column headerText="Laboratório" width="15%"
+					styleClass="centeredColumnContent">
+					<p:outputLabel value="#{med.nomeLab}" />
+				</p:column>
+
+				<p:column headerText="Registro MS" width="13%"
+					styleClass="centeredColumnContent">
+					<p:outputLabel value="#{med.registroMS}" />
+				</p:column>
+
+				<p:column headerText="Preço" width="10%"
+					styleClass="centeredColumnContent">
+					<p:outputLabel value="R$ #{med.preco}" />
+				</p:column>
+
+				<p:column headerText="Ação" width="12%"
+					styleClass="centeredColumnContent">
+					
+					<p:button value="Editar" outcome="editarMed" includeViewParams="true">
+							<f:param name="id" value="#{med.id}" />
+						</p:button>
+
+						<p:commandButton value="Deletar" process="tabMedicamentos" update="tabMedicamentos"
+							action="#{medBean.remover(med.id)}">
+							<p:confirm header="Confirmação de Exclusão"
+								message="Você esta prestes a excluir o Medicamento #{med.nome}, deseja continuar ?" />
+						</p:commandButton>
+
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+							<p:commandButton value="Sim" type="button"
+								styleClass="ui-confirmdialog-yes" />
+							<p:commandButton value="Não" type="button"
+								styleClass="ui-confirmdialog-no" />
+						</p:confirmDialog>
+						
+				</p:column>
+			</p:dataTable>
+
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+</html>
