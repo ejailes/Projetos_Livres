@@ -23,12 +23,12 @@
 					<p:panelGrid columns="2" styleClass="ui-noborder">
 						<p:outputLabel for="nomelab" value="Nome Laboratório:" />
 
-						<p:inputText id="nomelab" value="#{labBean.nome}" required="true"
+						<p:inputText id="nomelab" value="#{labBean.lab.nome}" required="true"
 							requiredMessage="Campo Nome é obrigatório" />
 
 
 						<h:panelGroup>
-							<p:commandButton value="Salvar" update="nomelab, :formLabs">
+							<p:commandButton actionListener="#{labBean.salvar}"  value="Salvar" update="nomelab, :formLabs">
 								<p:confirm header="Confirmação de Cadastro"
 									message="Você está prestes a salvar um novo Laboratório" />
 							</p:commandButton>

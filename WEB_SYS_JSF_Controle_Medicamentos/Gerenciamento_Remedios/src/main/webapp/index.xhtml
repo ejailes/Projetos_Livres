@@ -59,7 +59,7 @@
 
 						<h:panelGroup>
 							<p:commandButton value="Cadastrar"
-								action="#{medBean.salvarMedicamento}"
+								action="#{medBean.salvar}"
 								update="form, :tabMedicamentos" />
 						</h:panelGroup>
 
@@ -71,7 +71,7 @@
 
 			<br />
 
-			<p:dataTable value="#{medBean.med.selectMedicamentos()}" var="med" rows="5"
+			<p:dataTable value="#{medBean.getMeds()}" var="med" rows="5"
 				id="tabMedicamentos" paginator="true">
 
 				<f:facet name="header">Lista de Remédios</f:facet>

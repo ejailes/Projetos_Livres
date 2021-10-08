@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf16336171913060" configfile="/Gerenciamento_Remedios/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="novolab.xhtml" x="122" y="178" id="pf16336172363751" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf16336172363752" path="/novolab.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="editarlab.xhtml" x="338" y="178" id="pf16336172363753" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf16336172363752" path="/editarlab.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="122" y="562" id="pf16336172363754" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf16336172363755" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="editarmed.xhtml" x="338" y="562" id="pf16336172363766" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf16336172363755" path="/editarmed.xhtml"/>
+  <links id="pf16336172363752" target="pf16336172363753" source="pf16336172363751" outcome="editarLab" redirect="true"/>
+  <links id="pf16336172363755" target="pf16336172363766" source="pf16336172363754" outcome="editarMed" redirect="true"/>
+</pageflow:Pageflow>

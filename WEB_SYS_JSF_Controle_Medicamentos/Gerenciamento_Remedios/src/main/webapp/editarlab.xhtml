@@ -26,7 +26,7 @@
 			<h:form id="form">
 
 				<p:panel header="Alterar Laboratório"
-					rendered="#{labBean.lab.checkId}">
+					rendered="#{labBean.checkId}">
 
 					<p:panelGrid columns="2" styleClass="ui-noborder">
 
@@ -38,7 +38,7 @@
 
 						<h:panelGroup>
 							<p:commandButton value="Alterar" update="form"
-								action="#{labBean.alterar}" />
+								action="#{labBean.salvar}" />
 						</h:panelGroup>
 
 					</p:panelGrid>
