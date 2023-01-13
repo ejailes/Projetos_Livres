@@ -1,0 +1,34 @@
+.c-header{
+	
+	display: flex;
+	flex-wrap: wrap;
+	height: 100%;
+	background-color: #f8f9fa;
+	padding: 1.2rem;
+	border-bottom: 1px solid #dee2e6;
+}
+
+.c-header__fixed{
+	
+	position: fixed;
+	width: 100%;
+	z-index: 2;
+}
+
+.c-header__logo{
+	
+	display: flex;
+	flex-wrap: wrap;
+	flex: auto;
+	align-items: center;
+	font-weight: bolder;
+
+}
+
+.c-header__menu{
+	
+	display: flex;
+	flex-wrap: wrap;
+	padding-right: 1rem;
+
+}

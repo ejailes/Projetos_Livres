@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Open+Sans&#38;display=swap"
+		rel="stylesheet" />
+
+	<h:outputStylesheet library="css" name="base/base.css" />
+	<h:outputStylesheet library="css" name="modulos/_c-login.css" />
+	<h:outputStylesheet library="css" name="modulos/_c-loader.css" />
+
+	<title>Login</title>
+
+</h:head>
+<h:body>
+
+	<f:metadata>
+
+		<f:viewAction action="#{loginBean.init(usuario)}"
+			onPostback="false" />
+
+	</f:metadata>
+
+	<p:ajaxStatus>
+
+		<f:facet name="start">
+
+			<!-- The Modal -->
+			<div id="loader" class="modal" style="left: 0; top: 0;">
+
+				<!-- Modal content -->
+				<div class="modal-content">
+					<span><i style="color: white;"
+						class="pi pi-spin pi-spinner loading-icon" aria-hidden="true"></i></span>
+				</div>
+			</div>
+
+		</f:facet>
+
+		<f:facet name="complete">
+			<h:outputText value="" />
+		</f:facet>
+
+	</p:ajaxStatus>
+
+	<p:messages showIcon="false" style="margin:30px">
+		<p:autoUpdate disabled="false" />
+	</p:messages>
+
+	<h:form styleClass="c-login">
+
+		<div class="c-login__titulo">Login</div>
+
+		<div class="c-login__campos">
+
+			<div class="c-login__label">
+				<p:outputLabel for="login" value="Email:" />
+			</div>
+			<div class="c-login__input">
+				<p:inputText id="login" value="#{loginBean.email}" required="true"
+					requiredMessage="Email é obrigatório" />
+
+			</div>
+
+		</div>
+
+		<div class="c-login__campos">
+
+			<div class="c-login__label">
+				<p:outputLabel for="senha" value="Senha:" />
+			</div>
+			<div class="c-login__input">
+				<p:password id="senha" required="true"
+					requiredMessage="Senha é obrigatória" value="#{loginBean.password}"
+					maxlength="8" />
+			</div>
+
+		</div>
+
+		<p:commandButton styleClass="c-login__bt"
+			action="#{loginBean.login()}" value="Logar" update="senha" />
+
+		<p:link styleClass="c-login__bt c-login__bt--center"
+			href="#{request.contextPath}/cadastro.xhtml"
+			value="Não é um membro? Cadastre-se agora." />
+
+	</h:form>
+
+</h:body>
+</html>

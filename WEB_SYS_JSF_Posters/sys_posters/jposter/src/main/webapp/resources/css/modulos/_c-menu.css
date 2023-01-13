@@ -1,0 +1,11 @@
+#c-menu-fixed {
+	width: 19%;
+	min-width: 230px;
+	position: fixed;
+	z-index: 1;
+}
+
+.c-menu-fixed__preenchimento {
+	height: 100vh;
+	
+}

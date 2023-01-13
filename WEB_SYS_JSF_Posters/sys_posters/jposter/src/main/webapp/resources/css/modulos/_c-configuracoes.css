@@ -1,0 +1,28 @@
+.c-configuracoes{
+	
+	display: grid;
+	grid-template-columns: 1fr minmax(5%, auto);
+	grid-auto-rows: auto;
+	grid-gap: 5px;
+	
+}
+
+.c-configuracoes__campos{
+	
+	display: grid;
+	grid-auto-rows: auto;
+}
+
+.c-configuracoes__campos--unico {
+	grid-column: 1/-1;
+}
+
+.c-configuracoes__campos-bt {
+	
+	display: grid;
+	grid-auto-flow: column; 
+	grid-auto-columns: 150px;
+	grid-gap: 5px;
+	align-content: start;
+	
+}

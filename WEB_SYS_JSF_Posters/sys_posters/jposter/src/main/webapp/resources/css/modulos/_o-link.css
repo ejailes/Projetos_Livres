@@ -1,0 +1,9 @@
+.o-link, .o-link-blue {
+	text-decoration: none;
+	color: #495057;
+}
+
+.o-link-blue:hover {
+	color: #2196F3;
+	text-decoration: underline;
+}

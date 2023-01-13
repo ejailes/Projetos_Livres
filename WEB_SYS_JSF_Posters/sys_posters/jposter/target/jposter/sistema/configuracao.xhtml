@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="../WEB-INF/templates/layout/layout_base.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	<h:outputStylesheet library="css" name="modulos/_c-loader.css" />
+	
+	<ui:define name="title">Configuração</ui:define>
+
+	<ui:define name="menu">
+
+		<ui:include src="../WEB-INF/templates/compomentes/menu.xhtml" />
+
+	</ui:define>
+
+	<ui:define name="conteudo">
+
+		<f:metadata>
+			<f:viewAction action="#{configuracaoBean.init(usuario)}" />
+		</f:metadata>
+
+		<h:form id="form" styleClass="o-layout__conteudo">
+
+			<ui:include src="../WEB-INF/templates/compomentes/loading_icon.xhtml" />
+
+			<p:growl id="growl">
+				<p:autoUpdate />
+			</p:growl>
+			<p:growl id="growl-sticky" for="sticky-key" sticky="true">
+				<p:autoUpdate />
+			</p:growl>
+
+			<div class="c-configuracoes">
+
+				<div class="c-configuracoes__campos">
+
+					<p:outputLabel styleClass="c-new-post__label" value="Nome" />
+
+					<p:inputText value="#{configuracaoBean.usuario.nome}"
+						disabled="#{configuracaoBean.editandoPerfil == false ? true : false}"
+						required="true" requiredMessage="Nome é obrigatorio"
+						validatorMessage="Nome deve conter pelo menos 5 caracteres">
+						<f:validateLength minimum="8" />
+					</p:inputText>
+
+				</div>
+
+				<div class="c-configuracoes__campos c-configuracoes__campos--unico">
+
+					<p:outputLabel styleClass="c-new-post__label" value="Perfil" />
+
+					<p:selectManyCheckbox converter="#{permissaoConverter}"
+						required="true" disabled="true" style="width: 100%"
+						id="permissoes" value="#{configuracaoBean.permissoesDoUsuario}">
+
+						<f:selectItems value="#{configuracaoBean.getPermissoes()}"
+							var="permissao" itemValue="#{permissao}" itemLabel="#{permissao}">
+
+						</f:selectItems>
+
+					</p:selectManyCheckbox>
+
+				</div>
+
+				<div class="c-configuracoes__campos c-configuracoes__campos--unico">
+
+					<p:outputLabel styleClass="c-new-post__label" value="Email" />
+
+					<p:inputText value="#{configuracaoBean.usuario.email}"
+						disabled="#{configuracaoBean.editandoPerfil == false ? true : false}"
+						required="true" requiredMessage="Email é obrigatorio"
+						validatorMessage="E-mail deve conter pelo menos 8 caracteres"
+						validator="#{validator.validationEmail}">
+					</p:inputText>
+
+				</div>
+
+				<div class="c-configuracoes__campos-bt">
+
+					<p:commandButton
+						styleClass="#{configuracaoBean.editandoPerfil == false ? '' : 'ui-button-success'}"
+						value="#{configuracaoBean.editandoPerfil == false ? 'Alterar Dados' : 'Salvar'}"
+						action="#{configuracaoBean.updateEditandoPerfil()}"
+						process="@form" update="@form" />
+
+					<p:commandButton value="Alterar Senha" onclick="PF('dlg3').show()" />
+
+					<p:commandButton styleClass="ui-button-danger" value="Fechar Conta"
+						process="@form" update="@form" action="#{configuracaoBean.deletarUsuario}">
+
+						<p:confirm header="Confirmação de Exclusão"
+							message="Você esta prestes a excluir sua conta, Deseja continuar ?"
+							icon="pi pi-exclamation-triangle" />
+
+					</p:commandButton>
+					
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Sim" type="button"
+							styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+						<p:commandButton value="Não" type="button"
+							styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+					</p:confirmDialog>
+
+				</div>
+
+			</div>
+
+		</h:form>
+
+
+		<h:form id="frmAlterarPasword">
+			<p:dialog modal="true" header="Alterar Senha" widgetVar="dlg3"
+				minHeight="40" width="350" showEffect="fade">
+
+				<p:messages>
+					<p:autoUpdate />
+				</p:messages>
+
+				<p:panelGrid columns="1" styleClass="ui-noborder"
+					style="width: 100%">
+
+					<p:column>
+						<p:outputLabel value="Senha: " />
+						<p:password id="senha" feedback="false" style="width: 100%"
+							required="true" value="#{configuracaoBean.password}"
+							validatorMessage="As senha não são iguais"
+							requiredMessage="Campo Senha obrigatório" match="senha02">
+						</p:password>
+					</p:column>
+
+					<p:column>
+						<p:outputLabel value="Confirme Senha:" />
+						<p:password id="senha02" feedback="false"
+							validatorMessage="O Campo senha deve ter 8 caracteres"
+							style="width: 100%;" value="#{configuracaoBean.password}">
+							<f:validateLength minimum="8" maximum="8" />
+						</p:password>
+					</p:column>
+
+				</p:panelGrid>
+
+				<f:facet name="footer">
+					<p:commandButton type="button" value="Cancelar"
+						styleClass="ui-button-flat p-mr-2" style="width: 6rem"
+						onclick="PF('dlg3').hide();" />
+
+					<p:commandButton value="Salvar" style="width: 5rem"
+						action="#{configuracaoBean.updatePassword}"
+						process="@this, senha02, senha" update="senha02" />
+
+				</f:facet>
+
+			</p:dialog>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+

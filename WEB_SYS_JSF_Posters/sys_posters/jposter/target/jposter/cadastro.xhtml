@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Open+Sans&#38;display=swap"
+		rel="stylesheet" />
+
+	<h:outputStylesheet library="css" name="base/base.css" />
+	<h:outputStylesheet library="css" name="modulos/_c-loader.css" />
+	<h:outputStylesheet library="css" name="modulos/_c-cadastro.css" />
+
+	<title>Cadastro</title>
+</h:head>
+<h:body>
+
+	<f:metadata>
+
+		<f:viewAction action="#{loginBean.init(usuario)}" onPostback="false" />
+
+	</f:metadata>
+
+	<p:ajaxStatus>
+
+		<f:facet name="start">
+
+			<!-- The Modal -->
+			<div id="loader" class="modal" style="left: 0; top: 0;">
+
+				<!-- Modal content -->
+				<div class="modal-content">
+					<span><i style="color: white;"
+						class="pi pi-spin pi-spinner loading-icon" aria-hidden="true"></i></span>
+				</div>
+			</div>
+		</f:facet>
+
+		<f:facet name="complete">
+			<h:outputText value="" />
+		</f:facet>
+	</p:ajaxStatus>
+
+	<p:messages showDetail="false" style="margin:30px" showIcon="false">
+		<p:autoUpdate />
+	</p:messages>
+
+	<h:form styleClass="c-cadastro">
+
+		<div class="c-cadastro__titulo">Cadastro</div>
+
+		<div class="c-cadastro__campos">
+
+			<div class="c-cadastro__label">
+				<p:outputLabel for="nome" value="Nome:" />
+			</div>
+
+			<div class="c-cadastro__input">
+				<p:inputText id="nome" style="width: 90%"
+					value="#{cadastroBean.usuario.nome}" required="true"
+					requiredMessage="Campo nome é obrigatório"
+					validatorMessage="Campo nome deve ter pelo menos 8 caracteres e o max 30 caracteres">
+					<f:validateLength minimum="8" maximum="30" />
+				</p:inputText>
+
+			</div>
+
+		</div>
+
+		<div class="c-cadastro__campos">
+
+			<div class="c-cadastro__label">
+				<p:outputLabel for="email" value="Email:" />
+			</div>
+
+			<div class="c-cadastro__input">
+				<p:inputText id="email" style="width: 90%"
+					value="#{cadastroBean.usuario.email}" required="true"
+					requiredMessage="Campo email é obrigatório" />
+
+			</div>
+
+		</div>
+
+		<div class="c-cadastro__campos">
+
+			<div class="c-cadastro__label">
+				<p:outputLabel for="senha" value="Senha:" />
+			</div>
+
+			<div class="c-cadastro__input">
+				<p:password id="senha" style="width: 90%"
+					value="#{cadastroBean.usuario.password}"
+					validatorMessage="As senha não são iguais" required="true"
+					requiredMessage="Campo senha e obrigatóio" match="confirmesenha">
+				</p:password>
+
+			</div>
+
+		</div>
+
+		<div class="c-cadastro__campos">
+
+			<div class="c-cadastro__label">
+				<p:outputLabel for="confirmesenha" value="Confirme Senha:" />
+			</div>
+
+			<div class="c-cadastro__input">
+				<p:password id="confirmesenha" style="width: 90%" required="true"
+					requiredMessage="Campo confirme senha é obrigatório"
+					validatorMessage="O Campo senha deve ter 8 caracteres"
+					value="#{cadastroBean.usuario.password}">
+					<f:validateLength minimum="8" maximum="8" />
+				</p:password>
+
+			</div>
+
+		</div>
+
+		<p:commandButton value="Cadastrar" styleClass="c-cadastro__bt"
+			action="#{cadastroBean.salvar()}" />
+
+
+		<p:link href="#{request.contextPath}/login.xhtml"
+			styleClass="c-cadastro__bt c-cadastro__bt--center"
+			value="Já registrado? Fazer login." />
+
+	</h:form>
+
+</h:body>
+</html>

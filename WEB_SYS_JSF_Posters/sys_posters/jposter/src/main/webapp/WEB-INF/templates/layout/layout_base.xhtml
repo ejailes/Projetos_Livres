@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Open+Sans&#38;display=swap"
+		rel="stylesheet" />
+
+	<h:outputStylesheet library="css" name="base/base.css" />
+	<h:outputStylesheet library="css" name="layouts/_o-layout.css" />
+	<h:outputStylesheet library="css" name="modulos/_c-header.css" />
+	<h:outputStylesheet library="css" name="modulos/_c-menu.css" />
+	<h:outputStylesheet library="css" name="modulos/_o-link.css" />
+	<h:outputStylesheet library="css" name="modulos/_c-footer.css" />
+	<h:outputStylesheet library="css" name="modulos/_c-pre-view-post.css" />
+	<h:outputStylesheet library="css" name="modulos/_c-drop-menu.css" />
+	<h:outputStylesheet library="css" name="modulos/_c-pagination.css" />
+	<h:outputStylesheet library="css" name="modulos/_c-new-post.css" />
+	<h:outputStylesheet library="css" name="modulos/_c-notification-badges.css" />
+	<h:outputStylesheet library="css" name="modulos/_c-poster.css" />
+	<h:outputStylesheet library="css" name="modulos/_c-card.css" />
+	<h:outputStylesheet library="css" name="layouts/_o-layout-poster.css" />
+	<h:outputStylesheet library="css" name="modulos/_c-configuracoes.css" />
+	
+	<h:outputStylesheet library="css" name="modulos/_c-loader.css" />
+	
+	<title><ui:insert name="title">Sistema De Postagens</ui:insert></title>
+
+</h:head>
+
+<h:body>
+
+	<div id="o-layout">
+
+		<div class="o-layout__header">
+
+			<div class="c-header__fixed">
+
+				<div class="c-header">
+
+					<div class="c-header__logo">
+						<a class="o-link" href="home.xhtml">JPostagem</a>
+					</div>
+
+					<!-- Condicional para mostrar ou não opções de menu -->
+					<ui:fragment rendered="#{usuario == null}">
+
+						<div class="c-header__menu">
+							<a class="o-link-blue" href="login.xhtml">Login</a>
+						</div>
+						<div class="c-header__menu">
+							<a class="o-link-blue" href="cadastro.xhtml">Cadastre-se</a>
+						</div>
+
+					</ui:fragment>
+
+					<h:form styleClass="c-header__menu" rendered="#{usuario != null}">
+
+						<div class="dropdown">
+							<a class="dropbtn">#{usuario.usuarioDTO.nome}</a>
+							<div class="dropdown-content">
+								<a href="configuracao.xhtml">Configuração</a>
+								<h:commandLink action="#{usuario.sair}" value="Sair" />
+							</div>
+						</div>
+
+					</h:form>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<ui:insert name="menu" />
+
+		<ui:insert name="conteudo" />
+
+		<div class="o-layout__footer">
+			<div id="c-footer">
+				<div class="c-footer__autor">Developed by Jailes</div>
+			</div>
+		</div>
+
+	</div>
+
+</h:body>
+</html>
