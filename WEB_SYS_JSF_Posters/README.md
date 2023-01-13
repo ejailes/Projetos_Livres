@@ -31,7 +31,7 @@ Utilizando o Framework JSF foi desenvolvido um sistema de postagem de conteúdo.
 
 **Criação de um Poster**
 <p align="center">
-    <img src="https://cloud.githubusercontent.com/assets/yourgif.gif" width="480" height="118">
+    <img src="https://github.com/ejailes/Projetos_Livres/blob/master/WEB_SYS_JSF_Posters/gifs/g01.gif" width="480" height="118">
 </p>
 
 **Revisão de um Poster**
