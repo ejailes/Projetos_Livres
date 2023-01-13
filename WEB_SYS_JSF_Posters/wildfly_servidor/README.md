@@ -8,5 +8,5 @@ password: abcd1234
 ```
 
 Deve-se criar um banco de dados com nome "hibernatedb".
-Para mais informações consultar standalone.xml tag <security-domain name="red">.
+Para mais informações consultar standalone.xml tag: security-domain name="red".
 
