@@ -45,7 +45,8 @@ Utilizando o Framework JSF foi desenvolvido um sistema de postagem de conteúdo.
 </p>
 
 ## Acessando Sistema
-Router de acesso
+
+Route de acesso
 ```sh
 http://localhost:8080/jposter/
 ```
