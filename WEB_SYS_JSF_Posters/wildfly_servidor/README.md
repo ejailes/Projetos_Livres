@@ -1,6 +1,6 @@
 # Configurações do Wildfly 18.0.0
 
-Modulo do banco de dados Mysql já incluso no WildFly, o SGBD deve conter a seguinte conta com permissão para criação de databases e drop
+Modulo de conexão do banco de dados Mysql (modulos/com/mysql/main/mysql-connector-java-8.0.22.jar) já incluso no WildFly. Atenção módulo de conexão mysql versão 8.0.22, esse módulo funciona apenas no mysql server versão 8.0.22, caso utilize uma versão diferente adicionar novo módulo de conexão na versão equivalente ao mysql serve utilizador. O SGBD deve conter a seguinte conta com permissão GRANT ALL PRIVILEGES.
 
 ```sh
 usuário: user
