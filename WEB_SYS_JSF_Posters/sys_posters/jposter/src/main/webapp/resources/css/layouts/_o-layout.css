@@ -1,0 +1,70 @@
+#o-layout {
+	display: grid;
+	min-height: 100vh;
+	/* grid-template-columns: 10px repeat(5, 1fr) 10px; */
+	grid-template-columns: 10px repeat( 5, minmax(230px, 1fr) ) 10px;
+	grid-template-rows: 60px 1fr 60px;
+	grid-gap: 5px;
+	background-color: #e9ecef; 
+	grid-template-areas: 
+	"header header header header header header header"
+	". menu conteudo conteudo conteudo conteudo ."
+	"footer footer footer footer footer footer footer";
+}
+
+#o-layout__index{
+	
+	display: grid;
+	min-height: 100vh;
+	grid-template-columns: 10px repeat(5, 1fr) 10px;
+	grid-template-rows: 60px 1fr 60px;
+	grid-gap: 5px;
+	background-color: #e9ecef;
+	
+	grid-template-areas: 
+	"header header header header header header header"
+	". conteudo conteudo conteudo conteudo conteudo ."
+	"footer footer footer footer footer footer footer";
+	
+}
+
+.o-layout__header {
+	
+	grid-area: header;
+}
+
+.o-layout__menu {
+	
+	grid-area: menu;
+}
+
+.o-layout__conteudo {
+
+	grid-area: conteudo;
+	width: 100%;
+
+}
+
+.o-layout__conteudo-auto {
+
+	display: grid;
+	grid-auto-rows: auto;
+
+}
+
+.o-layout__footer {
+	
+	background-color: blue;
+	grid-area: footer;
+	z-index: 3;
+}
+
+@media screen and (min-width: 1361px) { 
+
+}
+
+@media screen and (min-width: 0px) and (max-width: 1360px) { 
+
+
+}
+

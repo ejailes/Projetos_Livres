@@ -1,0 +1,51 @@
+<form class="row" [formGroup]="authForm" (ngSubmit)="onSubmit()">
+
+    <app-alerta class="col-md-6 offset-md-3" [alertaType]="getTipoAlerta()" [msg]="msgErro"></app-alerta>
+
+    <div class="col-md-6 offset-md-3">
+        <label for="id_nome" class="col-form-label" labelValidation [onUpdate]="isValid('nome')">Nome</label>
+        <div>
+            <input type="text" inputValidation [form]="getFieldForm('nome')"
+                [onUpdate]="isValid('nome')" field="Nome" id="id_nome" class="form-control" name="nome" formControlName="nome">
+        </div>
+    </div>
+
+    <div class="col-md-6 offset-md-3">
+        <label for="id_email" class="col-form-label" labelValidation [onUpdate]="isValid('email')">Email</label>
+        <div>
+            <input field="Email" type="text" inputValidation [form]="getFieldForm('email')"
+                [onUpdate]="isValid('email')" class="form-control" name="email" id="id_email" formControlName="email"
+                placeholder="email@example.com">
+        </div>
+    </div>
+
+    <div formGroupName="passwords">
+        <div class="col-md-6 offset-md-3 px-1">
+            <label for="id_pass" class="col-form-label" labelValidation [onUpdate]="isValid('passwords')">Password</label>
+            <div>
+                <input type="password" id="id_pass" field="Password" name="password" inputValidation
+                    keyFormGroup="passwords" [form]="getFieldForm('passwords.password')"
+                    [onUpdate]="isValid('passwords')" class="form-control" formControlName="password">
+            </div>
+        </div>
+
+        <div class="col-md-6 offset-md-3 px-1">
+            <label for="id_confirme" class="col-form-label" labelValidation [onUpdate]="isValid('passwords')">Confirme Password</label>
+            <div>
+                <input type="password" id="id_confirme" field="Confirme Password" inputValidation
+                    keyFormGroup="passwords" [form]="getFieldForm('passwords.confirme_password')"
+                    [onUpdate]="isValid('passwords')" name="confirme_password"
+                    class="form-control" formControlName="confirme_password">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 offset-md-3 text-center mt-4">
+        <button type="submit" class="btn btn-primary px-5">Cadastrar</button>
+    </div>
+
+    <div class="col-md-6 offset-md-3 text-center mt-3">
+        <a routerLink="/auth/login">Já registrado? Fazer login.</a>
+    </div>
+
+</form>

@@ -1,0 +1,30 @@
+.c-infor {
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	width: 36%;
+	justify-content: center;
+	margin-top: 25px;
+	border: 1px solid #dee2e6;
+	background-color: #e9ecef;
+	padding: 5px;
+}
+
+.c-infor__titulo {
+	
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 16px;
+	font-weight: bold;
+	justify-content: center;
+	color: #495057;
+}
+
+.c-infor__descricao {
+	display: flex;
+	flex-wrap: wrap;
+	flex-basis: 100%;
+	font-size: 14px;
+	color: #495057;
+	justify-content: flex-start;
+}

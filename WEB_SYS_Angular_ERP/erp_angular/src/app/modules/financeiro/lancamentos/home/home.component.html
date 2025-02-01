@@ -1,0 +1,81 @@
+
+<table class="table table-striped table-hover table-bordered caption-top">
+    <caption style="padding: 0px;">
+        <div class="alert alert-dark head-radius text-center" style="margin: 0px;">
+            <strong>Lançamentos da Conta {{ conta.getNomeBanco() }}</strong>
+        </div>
+    </caption>
+    <thead>
+        <tr>
+            <th scope="col" class="text-center" style="width: 5%;">#</th>
+            <th scope="col">Cliente</th>
+            <th scope="col" style="width: 8%;">Operação</th>
+            <th scope="col" style="width: 30%;">Descrição</th>
+            <th scope="col">Valor</th>
+            <th scope="col" style="width: 10%;">Data</th>
+            <th scope="col" class="col-2 text-center">AÇÃO</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let lancamento of lancamentos">
+            <th scope="row" class="text-center">{{ lancamento.getId() }}</th>
+
+            <td>{{ lancamento.getClienteOUT().getNome() }}</td>
+            <td>{{ lancamento.getTipoOperacao() }}</td>
+            <td>{{ lancamento.getDescricao() }}</td>
+            <td>{{ lancamento.getValor() }}</td>
+            <td>{{ lancamento.getData() | date: 'dd/MM/yyyy' }}</td>
+
+            <td class="d-flex align-self-stretch justify-content-evenly">
+                <button type="button" class="btn btn-outline-primary" (click)="onEdit(lancamento)"><i
+                        class="bi bi-pencil-square"></i></button>
+                <button type="button" class="btn btn-outline-danger" (click)="onDelete(lancamento)"><i
+                        class="bi bi-trash3-fill"></i></button>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation">
+
+    <div class="flex-container">
+
+        <div>
+            <form class="row" [formGroup]="periodoLancamentosForm" (ngSubmit)="onSubmit()">
+
+                <ul class="pagination">
+                    <li class="page-item me-2">
+
+                        <input type="date" inputValidation [form]="getFieldForm('data_init')" [onUpdate]="isValid('data_init')" field="Data Inicial"
+                        class="form-control" name="data_init" id="id_data_init" formControlName="data_init">
+
+                    </li>
+
+                    <li class="page-item me-2">
+         
+                        <input type="date" inputValidation [form]="getFieldForm('data_fim')" [onUpdate]="isValid('data_fim')" field="Data Final"
+                        class="form-control" name="data_fim" id="id_data_fim" formControlName="data_fim">
+
+                    </li>
+
+                    <li class="page-item"><a class="btn btn-outline-primary ponteiro" (click)="onClickFiltro()">Filtrar</a></li>
+                </ul>
+
+            </form>
+        </div>
+
+        <div>
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link ponteiro" (click)="onClickNavPrevious()">Previous</a></li>
+                <li class="page-item" *ngFor="let pag of pagination.getPaginas()">
+                    <a class="page-link ponteiro" (click)="onClickNavPag(pag)">{{ pag + 1}}</a>
+                </li>
+                <li class="page-item"><a class="page-link ponteiro" (click)="onClickNavNext()">Next</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<button type="button" (click)="onClick()" class="btn btn-primary mt-3">Adicionar</button>

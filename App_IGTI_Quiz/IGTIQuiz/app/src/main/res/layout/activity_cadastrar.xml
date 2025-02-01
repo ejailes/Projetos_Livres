@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".CadastrarActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:gravity="center"
+                android:text="CADASTRE-SE"
+                android:textColor="@android:color/white"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:theme="@style/Widget.AppCompat.Button.Borderless.Colored" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+
+            <EditText
+                android:id="@+id/editTextNome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="@android:color/white"
+                android:ems="10"
+                android:hint="Nome"
+                android:inputType="textPersonName"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/editTextNovoEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@android:color/white"
+                android:ems="10"
+                android:hint="E-mail"
+                android:inputType="textEmailAddress"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/editTextNovaPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@android:color/white"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="10dp" />
+
+            <EditText
+                android:id="@+id/editTextConfirmaPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/white"
+                android:ems="10"
+                android:hint="Confirme Password"
+                android:inputType="textPassword"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/btCadastrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Cadastrar"
+                android:textColor="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/textViewVoltarLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center_horizontal"
+                android:text="Já registrado! Fazer login"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>

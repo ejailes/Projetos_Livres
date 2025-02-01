@@ -1,0 +1,29 @@
+<form class="row" [formGroup]="authForm" (ngSubmit)="onSubmit()">
+    
+    <app-alerta class="col-md-6 offset-md-3" [alertaType]="getTipoAlerta()" [msg]="msgErro"></app-alerta> 
+  
+    <div class="col-md-6 offset-md-3">
+        <label for="id_email" class="col-form-label" labelValidation [onUpdate]="isValid('email')">Email</label>
+        <div>
+            <input inputValidation [form]="getFieldForm('email')"
+            [onUpdate]="isValid('email')" field="Email" type="text" class="form-control" name="email" id="id_email" formControlName="email"
+                placeholder="email@example.com">
+        </div>
+    </div>
+
+    <div class="col-md-6 offset-md-3">
+        <label for="id_pass" class="col-form-label" labelValidation [onUpdate]="isValid('password')">Password</label>
+        <div>
+            <input type="password" inputValidation [onUpdate]="isValid('password')" [form]="getFieldForm('password')"
+            field="Password" name="password" class="form-control" formControlName="password" id="id_pass">
+        </div>
+    </div>
+   
+    <div class="col-md-6 offset-md-3 text-center mt-4">
+        <button type="submit" class="btn btn-primary px-5">Login</button>
+    </div>
+
+    <div class="col-md-6 offset-md-3 text-center mt-3">
+        <a routerLink="/auth/signup">Não é um membro? Cadastra-se agora.</a>
+    </div>
+</form>

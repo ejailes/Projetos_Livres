@@ -1,0 +1,29 @@
+.notification-badges .bag {
+	 display: inline-block;
+	 min-width: 50px;
+	 height: auto;
+	 vertical-align: top;
+	 margin: 10px;
+	 text-align: center;
+	 line-height: 50px;
+	 padding: 5px;
+}
+ .notification-badges [data-badge] {
+	 position: relative;
+}
+ .notification-badges [data-badge]:after {
+	 position: absolute;
+	 right: -10px;
+	 top: -10px;
+	 min-width: 10px;
+	 min-height: 10px;
+	 line-height: 10px;
+	 padding: 5px;
+	 color: #fff;
+	 background-color: #bf1f1f;
+	 font-size: 10px;
+	 border-radius: 20px;
+	 content: attr(data-badge);
+	 border: solid 1px #c93a3a;
+}
+ 

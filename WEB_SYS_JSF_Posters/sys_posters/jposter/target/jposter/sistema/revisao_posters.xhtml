@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="../WEB-INF/templates/layout/layout_base.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	<ui:define name="title">Posters Para Revisão</ui:define>
+
+	<ui:define name="menu">
+
+		<ui:include src="../WEB-INF/templates/compomentes/menu.xhtml" />
+
+	</ui:define>
+
+	<ui:define name="conteudo">
+
+		<h:form styleClass="o-layout__conteudo">
+
+			<ui:include src="../WEB-INF/templates/compomentes/loading_icon.xhtml" />
+
+			<p:dataTable
+				style="border-radius: 4px; border: 1px solid #dee2e6; with:90%;"
+				value="#{revisaoPostersBean.lazyPosters}"
+				emptyMessage="Nenhum poster encontrado." rowIndexVar="index"
+				var="poster" rows="10" paginator="true" lazy="true"
+				paginatorAlwaysVisible="false" paginatorPosition="bottom">
+
+				<p:column width="10%" style="text-align:center;" headerText="Codigo">
+					<h:outputText value="#{poster.id}" />
+				</p:column>
+
+				<p:column width="50%" style="text-align:center;" headerText="Titulo">
+					<h:outputText value="#{poster.titulo}" />
+				</p:column>
+
+				<p:column width="20%" style="text-align:center;" headerText="Status">
+
+
+					<ui:fragment
+						rendered="#{poster.status == 'NOTCHECKED' and poster.revisao == null}">
+						<p:commandButton styleClass="ui-button-warning"
+							value="Para Análise" />
+					</ui:fragment>
+
+					<ui:fragment
+						rendered="#{poster.status == 'NOTCHECKED' and poster.revisao != null}">
+						<p:commandButton styleClass="ui-button-secondary"
+							value="Aguardado Correção" />
+					</ui:fragment>
+
+				</p:column>
+
+				<p:column style="text-align: center" width="20%" headerText="Ações">
+
+					<p:button type="submit" style="margin:5px"
+						outcome="revisao?faces-redirect=true"
+						disabled="#{poster.revisao != null}" icon="pi pi-eye">
+						<f:param name="id" value="#{poster.id}" />
+
+					</p:button>
+
+					<p:commandButton style="margin:5px" update="@form"
+						styleClass="ui-button-danger" icon="pi pi-trash"
+						actionListener="#{revisaoPostersBean.removerPoster(poster)}">
+
+						<p:confirm header="Confirmação de Exclusão"
+							message="Você esta prestes a excluir o Poster de Numero: #{poster.id}, Deseja continuar ?"
+							icon="pi pi-exclamation-triangle" />
+
+					</p:commandButton>
+
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Sim" type="button"
+							styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+						<p:commandButton value="Não" type="button"
+							styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+					</p:confirmDialog>
+
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+

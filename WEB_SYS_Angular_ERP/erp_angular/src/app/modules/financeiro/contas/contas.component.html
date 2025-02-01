@@ -1,0 +1,42 @@
+<table class="table table-striped table-hover table-bordered caption-top">
+    <caption style="padding: 0px;">
+        <div class="alert alert-dark head-radius text-center" style="margin: 0px;">
+            <strong>Contas da Empresa {{ empresa.getNome() }}</strong>
+        </div>
+    </caption>
+    <thead>
+        <tr>
+            <th scope="col" class="text-center" style="width: 5%;">#</th>
+            <th scope="col">Nome Banco</th>
+            <th scope="col">Agência</th>
+            <th scope="col">Conta</th>
+            <th scope="col" class="col-2 text-center">AÇÃO</th>
+        </tr>
+    </thead>
+
+    <tbody [ngSwitch]="existContas">
+
+        <ng-container *ngSwitchCase="true">
+            <tr *ngFor="let conta of contas">
+                <th scope="row" class="text-center">{{ conta.getId() }}</th>
+                <td>{{ conta.getNomeBanco() }}</td>
+                <td>{{ conta.getNumAgencia() }}</td>
+                <td>{{ conta.getConta().getNumeroContaComDigito() }}</td>
+                <td class="d-flex justify-content-evenly">
+                    <button type="button" class="btn btn-outline-primary"
+                        [routerLink]="[conta.getId(), 'lancamentos']"><i
+                            class="bi bi-arrow-up-right-circle-fill"></i></button>
+                    <button type="button" class="btn btn-outline-danger" (click)="onDelete(conta)"><i
+                            class="bi bi-trash3-fill"></i></button>
+
+                </td>
+            </tr>
+        </ng-container>
+
+        <tr *ngSwitchCase="false">
+            <td style="text-align:center;" colspan="5">Não existe conta cadastrada</td>
+        </tr>
+
+    </tbody>
+</table>
+<button type="button" (click)="onClick()" class="btn btn-primary">Adicionar</button>

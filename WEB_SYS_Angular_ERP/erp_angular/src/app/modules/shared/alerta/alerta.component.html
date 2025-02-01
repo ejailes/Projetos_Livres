@@ -1,0 +1,4 @@
+<div class="alert remove-margin alert-dismissible" [ngClass]="alertaType" *ngIf="msg" role="alert">
+  {{ msg }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="onCloseModal()"></button>
+</div>

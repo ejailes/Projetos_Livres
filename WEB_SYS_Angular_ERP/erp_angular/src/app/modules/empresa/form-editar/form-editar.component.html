@@ -1,0 +1,82 @@
+<form class="row" [formGroup]="empresaForm" (ngSubmit)="onSubmit()">
+
+    <app-alerta class="col-md-8 offset-md-2" [alertaType]="getTipoAlerta()" [msg]="msgErro"></app-alerta>
+
+    <div class="col-md-8 offset-md-2">
+        <label class="col-form-label" labelValidation [onUpdate]="isValid('nome')" for="id_nome">Nome</label>
+        <div>
+            <input type="text" inputValidation [form]="getFieldForm('nome')" [onUpdate]="isValid('nome')" field="Nome"
+                class="form-control" name="nome" id="id_nome" formControlName="nome">
+        </div>
+    </div>
+
+    <div class="col-md-8 offset-md-2">
+        <div class="row">
+            <div class="col-md-4">
+                <label class="col-form-label" for="id_cnpj" labelValidation [onUpdate]="isValid('cnpj')">CNPJ</label>
+                <div>
+                    <input type="text" inputValidation [form]="getFieldForm('cnpj')" [dropSpecialCharacters]="false"
+                        mask="00.000.000/0000-00" [onUpdate]="isValid('cnpj')" field="CNPJ" class="form-control"
+                        name="cnpj" formControlName="cnpj" id="id_cnpj">
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <label class="col-form-label" for="id_cep" labelValidation [onUpdate]="isValid('cep')">CEP</label>
+                <div>
+                    <input id="id_cep" type="text" inputValidation [form]="getFieldForm('cep')" [onUpdate]="isValid('cep')" field="CEP"
+                    class="form-control" name="cep" mask="00000-000" [dropSpecialCharacters]="false" formControlName="cep" (blur)='onBlur()'>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <label class="col-form-label" for="id_numero" labelValidation [onUpdate]="isValid('numero')">Número</label>
+                <div>
+                    <input type="text" id="id_numero" class="form-control" name="numero" formControlName="numero"
+                    inputValidation [form]="getFieldForm('numero')" [onUpdate]="isValid('numero')" field="Número">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-8 offset-md-2">
+        <label class="col-form-label">Logradouro</label>
+        <div>
+            <input type="text" class="form-control" name="logradouro" formControlName="logradouro">
+        </div>
+    </div>
+
+    <div class="col-md-8 offset-md-2">
+        <div class="row">
+            <div class="col-md-6">
+                <label class="col-form-label">Bairro</label>
+                <div>
+                    <input type="text" class="form-control" name="bairro" formControlName="bairro">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label class="col-form-label">Cidade</label>
+                <div>
+                    <input type="text" class="form-control" name="cidade" formControlName="cidade">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <label class="col-form-label">UF</label>
+                <div>
+                    <input type="text" class="form-control" name="uf" formControlName="uf">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8 offset-md-2 mt-4">
+        <div class="row">
+            <div class="col-md-8">
+                <button type="submit" class="btn btn-primary px-4 me-4">Alterar</button>
+                <button type="button" (click)="onClickVoltar()" class="btn btn-secondary px-4">Voltar</button>
+            </div>
+        </div>
+    </div>
+
+</form>

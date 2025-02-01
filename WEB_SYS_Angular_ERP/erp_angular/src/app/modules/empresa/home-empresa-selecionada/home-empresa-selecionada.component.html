@@ -1,0 +1,39 @@
+<div class="py-2">
+    <h4>Operações para <strong>{{empresa?.getNome()}}</strong></h4>
+</div>
+
+<div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                Últimas Movimentações de Conta
+            </button>
+        </h2>
+
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample">
+
+            <div class="accordion-body" [ngSwitch]="existContas">
+
+                <div *ngSwitchCase="true">
+                    <div class="list-group mb-3" *ngFor="let conta of contas">
+                        <a class="list-group-item list-group-item-action active" aria-current="true">{{
+                            conta.conta.getNomeBanco() }}</a>
+                        <a *ngFor="let lancamento of conta.lancamentos"
+                            class="list-group-item list-group-item-action">Descrição: {{ lancamento.getDescricao() }} |
+                            Operação: {{ lancamento.getTipoOperacao() }} | Valor: {{ lancamento.getValor() }}</a>
+                    </div>
+                </div>
+
+                <div *ngSwitchCase="false">
+                    Não existe movimentação em conta(s)
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<button type="button" routerLink="/empresas" class="btn btn-primary mt-3">Voltar</button>

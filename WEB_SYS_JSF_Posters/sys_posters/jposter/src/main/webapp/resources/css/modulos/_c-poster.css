@@ -1,0 +1,45 @@
+.c-poster {
+	display: flex;
+	flex-wrap: wrap;
+	flex: 1 0 100%;
+}
+
+.c-poster__titulo {
+	margin-top: 0;
+	display: flex;
+	flex-wrap: wrap;
+	flex: 1 0 100%;
+	margin-bottom: 0;
+}
+
+.c-poster__autor {
+	display: flex;
+	flex-wrap: wrap;
+	flex: 1 0 100%;
+	margin-top: 0;
+}
+
+.c-poster__layout {
+	margin-top: 1.2rem;
+	display: block;
+
+}
+
+.c-poster__img {
+	
+	float: left;
+	margin-right: 10px;
+	max-width: 25%;
+	
+}
+
+.c-poster__texto{
+	
+	text-align: justify;
+	
+}
+
+.c-poster__clear {
+	
+	clear: both;
+}

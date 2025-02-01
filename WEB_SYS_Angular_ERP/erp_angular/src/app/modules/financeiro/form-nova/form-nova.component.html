@@ -1,0 +1,81 @@
+<form class="row" [formGroup]="empresaForm" (ngSubmit)="onSubmit()">
+    
+    <app-alerta class="col-md-8 offset-md-2" [alertaType]="getTipoAlerta()" [msg]="msgErro"></app-alerta>
+   
+    <div class="col-md-8 offset-md-2">
+        <div class="row">
+            <div class="col-md-8">
+                <label class="col-form-label" labelValidation [onUpdate]="isValid('nome')" for="id_nome"
+                    for="id_nome">Nome da Empresa
+                </label>
+                <div>
+                    <input type="text" class="form-control" name="nome" id="id_nome" inputValidation
+                        [form]="getFieldForm('nome')" [onUpdate]="isValid('nome')" field="Nome" formControlName="nome">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label class="col-form-label" for="id_cnpj" labelValidation [onUpdate]="isValid('cnpj')">CNPJ</label>
+                <div>
+                    <input type="text" inputValidation [form]="getFieldForm('cnpj')" [dropSpecialCharacters]="false"
+                        mask="00.000.000/0000-00" [onUpdate]="isValid('cnpj')" field="CNPJ" class="form-control"
+                        name="cnpj" formControlName="cnpj" id="id_cnpj">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8 offset-md-2">
+        <div class="row">
+            <div class="col-md-8">
+                <label class="col-form-label" labelValidation [onUpdate]="isValid('nomeBanco')" for="nome_banco">Nome do Banco</label>
+                <div>
+                    <input type="text" id="nome_banco" class="form-control" name="nomeBanco" formControlName="nomeBanco"
+                    inputValidation [form]="getFieldForm('nomeBanco')" [onUpdate]="isValid('nomeBanco')" field="Nome do Banco">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label class="col-form-label" labelValidation [onUpdate]="isValid('numeroAg')" for="numero_Ag">Número da Agência</label>
+                <div>
+                    <input type="number" id="numero_Ag" class="form-control" name="numeroAg" formControlName="numeroAg"
+                    inputValidation [form]="getFieldForm('numeroAg')" [onUpdate]="isValid('numeroAg')" field="Agência">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8 offset-md-2">
+        <div class="row">
+            <div class="col-md-4">
+                <label class="col-form-label" labelValidation [onUpdate]="isValid('numeroConta')" for="numero_Conta">Número da Conta</label>
+                <div>
+                    <input type="number" id="numero_Conta" class="form-control" name="numeroConta" formControlName="numeroConta"
+                    inputValidation [form]="getFieldForm('numeroConta')" [onUpdate]="isValid('numeroConta')" field="Número da Conta">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label class="col-form-label"  labelValidation [onUpdate]="isValid('digito')" for="id_digito">Dígito da Conta</label>
+                <div>
+                    <input type="number" id="id_digito" class="form-control" name="digito" formControlName="digito"
+                    inputValidation [form]="getFieldForm('digito')" [onUpdate]="isValid('digito')" field="Dígito da Conta">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label class="col-form-label" labelValidation [onUpdate]="isValid('tipoConta')" for="id_tipoConta">Tipo de Conta</label>
+                <div>
+                    <input type="text" id="id_tipoConta" class="form-control" name="tipoConta" formControlName="tipoConta"
+                    inputValidation [form]="getFieldForm('tipoConta')" [onUpdate]="isValid('tipoConta')" field="Tipo de Conta">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8 offset-md-2 mt-4">
+        <div class="row">
+            <div class="col-md-8">
+                <button type="submit" class="btn btn-primary px-4 me-4">Salvar</button>
+                <button type="button" (click)="onClickVoltar()" class="btn btn-secondary px-4">Voltar</button>
+            </div>
+        </div>
+    </div>
+
+</form>

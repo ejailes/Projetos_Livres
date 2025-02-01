@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:body>
+
+	<ui:composition template="WEB-INF/templates/rootTemplate.xhtml">
+
+		<ui:define name="title">Alteração de Medicamento</ui:define>
+
+		<ui:define name="body">
+
+			<f:metadata>
+				<f:viewParam name="id" value="#{medBean.med.id}" />
+				<f:viewAction action="#{medBean.validatorID}" />
+			</f:metadata>
+
+			<p:messages id="msg" autoUpdate="true">
+
+			</p:messages>
+
+			<h:form id="form">
+
+				<p:panel header="Alterar Medicamento" rendered="#{medBean.checkId}">
+
+					<p:panelGrid columns="2" styleClass="ui-noborder">
+
+						<p:outputLabel for="id" value="Id:" />
+						<p:inputText id="id" disabled="true" value="#{medBean.med.id}" />
+
+						<p:outputLabel for="nome" value="Nome:" />
+						<p:inputText id="nome" value="#{medBean.med.nome}" />
+
+						<p:outputLabel for="prescricao" value="Prescrição Padrão:" />
+						<p:inputText id="prescricao" required="true"
+							requiredMessage="Campo Prescrição é Obrigatorio"
+							value="#{medBean.med.prescricao}" />
+
+						<p:outputLabel for="lab" value="Laboratório:" />
+						<p:selectOneMenu required="true"
+							requiredMessage="Você deve selecionar um Laboratorio" id="lab"
+							style="width:84%" value="#{medBean.med.foreignKeyLab}">
+							<f:selectItem itemLabel="Selecione"/>
+							<f:selectItems var="laboratorio" value="#{medBean.getLabs()}"
+								itemValue="#{laboratorio.id}" itemLabel="#{laboratorio.nome}" />
+						</p:selectOneMenu>
+
+						<p:outputLabel for="reg_ms" value="Registro MS:" />
+						<p:inputMask id="reg_ms" size="3" mask="9?9999" required="true"
+							value="#{medBean.med.registroMS}"
+							requiredMessage="Campo Registro MS é Obrigatorio"
+							validatorMessage="Registro deve conter 5 numeros">
+							<f:validateLength maximum="5" minimum="5" />
+						</p:inputMask>
+
+						<p:outputLabel for="preco" value="Preço:" />
+						<p:inputNumber id="preco" required="true"
+							value="#{medBean.med.preco}"
+							requiredMessage="Campo Preço é Obrigatorio"
+							validatorMessage="Preço mínimo deve ser R$ 10,00">
+
+							<f:validateDoubleRange minimum="10" />
+
+						</p:inputNumber>
+
+						<h:panelGroup>
+							<p:commandButton value="Alterar" update="form"
+								action="#{medBean.salvar()}" />
+						</h:panelGroup>
+
+					</p:panelGrid>
+
+				</p:panel>
+
+			</h:form>
+
+		</ui:define>
+
+
+	</ui:composition>
+
+</h:body>
+
+</html>

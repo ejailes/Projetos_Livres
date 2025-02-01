@@ -1,0 +1,91 @@
+<div class="modal-header">
+    <h1 class="modal-title fs-5" id="staticBackdropLabel">Cadastrar Lançamento</h1>
+    <button type="button" class="btn-close" (click)="onDecline()"></button>
+</div>
+
+<div class="modal-body text-right">
+
+    <form class="row" [formGroup]="lancamentoForm" (ngSubmit)="onSubmit()">
+
+        <app-alerta class="col-12" [alertaType]="getTipoAlerta()" [msg]="msgErro"></app-alerta>
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="col-form-label" labelValidation [onUpdate]="isValid('cliente')"
+                        for="id_cliente">Cliente</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <select class="form-select" inputValidation field="Cliente" [form]="getFieldForm('cliente')"
+                        [onUpdate]="isValid('cliente')" formControlName="cliente" id="id_cliente" name="cliente">
+
+                        <option *ngFor="let cliente of clientes" [value]="cliente.getID()">{{ cliente.getNome() }}</option>
+
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <label class="col-form-label" labelValidation [onUpdate]="isValid('operacao')"
+                        for="id_operacao">Operação</label>
+                    <select class="form-select" inputValidation field="Operação" [form]="getFieldForm('operacao')"
+                        [onUpdate]="isValid('operacao')" formControlName="operacao" id="id_operacao" name="operacao">
+
+                        <option *ngFor="let operacao of operacoes" [value]="operacao">{{ operacao }}</option>
+
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="col-form-label" labelValidation [onUpdate]="isValid('data')"
+                        for="id_data">Data</label>
+                    <input type="date" class="form-control" inputValidation [form]="getFieldForm('data')"
+                        [onUpdate]="isValid('data')" field="Data" class="form-control" name="data" id="id_data"
+                        formControlName="data">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="col-form-label" labelValidation [onUpdate]="isValid('valor')"
+                        for="id_valor">Valor</label>
+                    <input type="number" class="form-control" inputValidation [form]="getFieldForm('valor')"
+                        [onUpdate]="isValid('valor')" field="Valor" class="form-control" name="valor" id="id_valor"
+                        formControlName="valor">
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="col-form-label" labelValidation [onUpdate]="isValid('descricao')"
+                        for="id_descricao">Descrição</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" inputValidation
+                        field="Descrição" class="form-control" name="descricao" id="id_descricao"
+                        [form]="getFieldForm('descricao')" [onUpdate]="isValid('descricao')"
+                        formControlName="descricao"></textarea>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="onConfirm()">Salvar</button>
+    <button type="button" class="btn btn-secondary" (click)="onDecline()">Cancelar</button>
+</div> 

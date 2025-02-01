@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	<h:head>
+
+		<h:outputStylesheet library="css" name="modulos/_c-login.css" />
+		<h:outputStylesheet library="css" name="modulos/_c-loader.css" />
+
+	</h:head>
+
+	<p:ajaxStatus style="position: absolute;">
+
+		<f:facet name="start">
+
+			<!-- The Modal -->
+			<div id="loader" class="modal" style="width: 80%; height: 80%">
+
+				<!-- Modal content -->
+				<div class="modal-content">
+					<span><i style="color: white;"
+						class="pi pi-spin pi-spinner loading-icon" aria-hidden="true"></i></span>
+				</div>
+			</div>
+		</f:facet>
+
+		<f:facet name="complete">
+			<h:outputText value="" />
+		</f:facet>
+
+	</p:ajaxStatus>
+
+</ui:composition>

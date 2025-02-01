@@ -1,0 +1,81 @@
+/* Modulo c-login e c-cadastro similares, diferença c-login utiliza alinhamento de grid dentro de grid */
+.c-login {
+	width: 30%;
+	min-width: 290px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-auto-rows: 60px;
+	grid-gap: 5px;
+	justify-content: center;
+	align-content: center;
+	color: #495057;
+	border: 1px solid #dee2e6;
+}
+
+.c-login__titulo {
+	display: grid;
+	font-size: 24px;
+	font-weight: bold;
+	grid-column: 1/-1;
+	justify-items: center;
+	align-items: center;
+	background-color: #e9ecef;
+	border-bottom: 1px solid #dee2e6;
+}
+
+.c-login__campos {
+	margin-top: 1.2rem;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-column: 1/-1;
+	justify-content: center;
+
+}
+
+.c-login__label {
+	display: grid;
+	justify-self: end;
+	align-items: center;
+	padding-bottom: .3rem;
+}
+
+.c-login__input {
+	display: grid;
+	grid-column: 2/6;
+	align-items: center;
+	padding-left: 3%;
+	padding-right: 8%;
+}
+
+.c-login__bt {
+	display: grid;
+	grid-column: 1/-1;
+	align-self: end;
+	justify-self: center;
+}
+
+.c-login__bt--center {
+	align-self: center;
+}
+
+@media screen and (max-width:1160px) {
+	#c-login {
+		grid-template-columns: 1fr;
+	}
+	.c-login__campos {
+		grid-template-columns: 1fr;
+	}
+	.c-login__label {
+		grid-column: 1/-1;
+		justify-self: center;
+	}
+	.c-login__input {
+		grid-column: 1/-1;
+		padding-left: 5%;
+		padding-right: 5%;
+	}
+	
+
+	
+}

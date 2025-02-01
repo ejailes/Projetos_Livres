@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink='empresas'>Angular ERP</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+      aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02" *ngIf="usuario">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li *ngIf="inEmpresa" class="nav-item">
+          <a class="nav-link" [routerLink]="['empresas', empresa?.getId(), 'home']" [class.active]="inMenu == 'home'"
+            (click)="onClickMenu('home')">Home</a>
+        </li>
+        <li *ngIf="inEmpresa" class="nav-item">
+          <a class="nav-link" [routerLink]="['empresas', empresa?.getId(), 'clientes']"
+            [class.active]="inMenu == 'clientes'" (click)="onClickMenu('clientes')">Clientes</a>
+        </li>
+        <li *ngIf="inEmpresa" class="nav-item dropdown">
+
+          <a class="nav-link dropdown-toggle" [class.active]="inMenu == 'financeiro'" role="button"
+            aria-expanded="false" data-bs-toggle="dropdown">Financeiro</a>
+
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" [routerLink]="['empresas', empresa?.getId(), 'financeiro', 'contas']"
+                routerLinkActive="active" (click)="onClickMenu('financeiro')">Conta</a></li>
+            <!-- 
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+          </ul>
+        </li>
+      </ul>
+      <div class="d-flex">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ usuario.getNome() }}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" role="button" (click)="onLogout()">Sair</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="../WEB-INF/templates/layout/layout_base.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	<ui:define name="title">Meus Posters</ui:define>
+
+	<ui:define name="menu">
+
+		<ui:include src="../WEB-INF/templates/compomentes/menu.xhtml" />
+
+	</ui:define>
+
+	<ui:define name="conteudo">
+
+		<h:form styleClass="o-layout__conteudo">
+
+			<p:growl id="growl">
+				<p:autoUpdate />
+			</p:growl>
+			<p:growl id="growl-sticky" for="sticky-key" sticky="true">
+				<p:autoUpdate />
+			</p:growl>
+
+			<ui:include src="../WEB-INF/templates/compomentes/loading_icon.xhtml" />
+
+			<p:dataTable
+				style="border-radius: 4px; border: 1px solid #dee2e6; with:90%;"
+				value="#{meusPostersBean.lazyPosters}" var="poster"
+				rowIndexVar="index" rows="10"
+				emptyMessage="Nenhum poster encontrado." paginator="true"
+				paginatorAlwaysVisible="false" paginatorPosition="bottom"
+				lazy="true">
+
+				<p:column width="10%" style="text-align:center;" headerText="Codigo">
+					<h:outputText value="#{poster.id}" />
+				</p:column>
+
+				<p:column width="50%" style="text-align:center;" headerText="Titulo">
+					<h:outputText value="#{poster.titulo}" />
+				</p:column>
+
+				<p:column width="20%" styleClass="notification-badges"
+					style="text-align:center;" headerText="Status">
+
+					<ui:fragment rendered="#{poster.status == 'NOTCHECKED'}">
+
+						<p:commandButton rendered="#{poster.revisao == null}"
+							styleClass="ui-button-secondary" value="Em Análise" />
+
+						<ui:fragment rendered="#{poster.revisao != null}">
+
+							<div class="bag" data-badge="1">
+
+								<p:button styleClass="ui-button-warning" value="Para Correção" />
+
+							</div>
+
+						</ui:fragment>
+
+					</ui:fragment>
+
+					<p:button value="Publicado"
+						rendered="#{poster.status == 'CHECKED'}"
+						styleClass="ui-button-success" />
+
+				</p:column>
+
+				<p:column style="text-align: center" width="20%" headerText="Ações">
+					<p:button style="margin:5px"
+						disabled="#{poster.status == 'CHECKED' || poster.revisao == null}"
+						icon="pi pi-pencil" outcome="criar?faces-redirect=true">
+						<f:param name="id" value="#{poster.id}" />
+					</p:button>
+
+					<p:commandButton style="margin:5px" update="@form"
+						styleClass="ui-button-danger" icon="pi pi-trash"
+						actionListener="#{meusPostersBean.removerPoster(poster)}">
+
+						<p:confirm header="Confirmação de Exclusão"
+							message="Você esta prestes a excluir o Poster de Numero: #{poster.id}, Deseja continuar ?"
+							icon="pi pi-exclamation-triangle" />
+
+					</p:commandButton>
+
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Sim" type="button"
+							styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+						<p:commandButton value="Não" type="button"
+							styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+					</p:confirmDialog>
+
+
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+

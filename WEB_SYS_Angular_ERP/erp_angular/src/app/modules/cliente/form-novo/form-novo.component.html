@@ -1,0 +1,49 @@
+<form class="row" [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
+
+    <app-alerta class="col-md-8 offset-md-2" [alertaType]="getTipoAlerta()" [msg]="msgErro"></app-alerta>
+
+    <div class="col-md-8 offset-md-2">
+        <label class="col-form-label" labelValidation [onUpdate]="isValid('nome')" for="id_nome">Nome</label>
+        <div>
+            <input type="text" inputValidation [form]="getFieldForm('nome')" [onUpdate]="isValid('nome')" field="Nome" class="form-control"
+            name="nome" id="id_nome" formControlName="nome">
+        </div>
+    </div> 
+ 
+    <div class="col-md-8 offset-md-2">
+        <div class="row">
+            <div class="col-md-6">
+                <label class="col-form-label" labelValidation [onUpdate]="isValid('tipo')" for="id_tipo">Tipo</label>
+                <select class="form-select" inputValidation [form]="getFieldForm('tipo')" [onUpdate]="isValid('tipo')"
+                 field="Tipo" formControlName="tipo" id="id_tipo" name="tipo">
+
+                    <option *ngFor="let tipo of tipos" [value]="tipo">{{ tipo }}</option>
+
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="col-form-label" for="id_cpf_cnpj">CPF / CNPJ</label>
+                <div>
+                    <input type="text"
+                        field="CPF / CNPJ" class="form-control" inputValidation [form]="getFieldForm('cpf_cnpj')"
+                        name="cpf_cnpj" [onUpdate]="isValid('cpf_cnpj')" [mask]="maskCpfCnpj" [dropSpecialCharacters]="false"
+                        formControlName="cpf_cnpj" id="id_cpf_cnpj">
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+
+
+    <div class="col-md-8 offset-md-2 mt-4">
+        <div class="row">
+            <div class="col-md-8">
+                <button type="submit" class="btn btn-primary px-4 me-4">Salvar</button>
+                <button type="button" (click)="onClickVoltar()" class="btn btn-secondary px-4">Voltar</button>
+            </div>
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:body>
+
+	<ui:composition template="WEB-INF/templates/rootTemplate.xhtml">
+
+		<ui:define name="title">Novo Laboratório</ui:define>
+
+		<ui:define name="body">
+
+			<p:messages id="msg" autoUpdate="true" />
+
+			<h:form>
+				<p:panel header="Cadastrar Laboratório">
+
+
+					<p:panelGrid columns="2" styleClass="ui-noborder">
+						<p:outputLabel for="nomelab" value="Nome Laboratório:" />
+
+						<p:inputText id="nomelab" value="#{labBean.lab.nome}" required="true"
+							requiredMessage="Campo Nome é obrigatório" />
+
+
+						<h:panelGroup>
+							<p:commandButton actionListener="#{labBean.salvar}"  value="Salvar" update="nomelab, :formLabs">
+								<p:confirm header="Confirmação de Cadastro"
+									message="Você está prestes a salvar um novo Laboratório" />
+							</p:commandButton>
+
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade">
+								<p:commandButton value="Ok" type="button"
+									styleClass="ui-confirmdialog-yes" />
+								<p:commandButton value="Não" type="button"
+									styleClass="ui-confirmdialog-no" />
+							</p:confirmDialog>
+
+						</h:panelGroup>
+
+					</p:panelGrid>
+
+				</p:panel>
+			</h:form>
+
+			<br />
+
+			<h:form id="formLabs">
+
+				<p:dataTable value="#{labBean.getLabs()}" rows="5" paginator="true" id="labs" var="lab">
+
+					<f:facet name="header">Lista de Laboratórios</f:facet>
+
+					<p:column headerText="id" width="10%"
+						styleClass="centeredColumnContent">
+
+						<p:outputLabel value="#{lab.id}" />
+
+					</p:column>
+
+					<p:column headerText="nome">
+
+						<p:outputLabel value="#{lab.nome}" />
+
+					</p:column>
+
+					<p:column headerText="Ação" width="12%"
+						styleClass="centeredColumnContent">
+
+						<p:button value="Editar" outcome="editarLab"
+							includeViewParams="true">
+							<f:param name="id" value="#{lab.id}" />
+						</p:button>
+
+						<p:commandButton value="Deletar" update="formLabs"
+							action="#{labBean.remover(lab.id)}">
+							<p:confirm header="Confirmação de Exclusão"
+								message="Você esta prestes a excluir o laboratório #{lab.nome}, deseja continuar ?" />
+						</p:commandButton>
+
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+							<p:commandButton value="Sim" type="button"
+								styleClass="ui-confirmdialog-yes" />
+							<p:commandButton value="Não" type="button"
+								styleClass="ui-confirmdialog-no" />
+						</p:confirmDialog>
+
+					</p:column>
+
+				</p:dataTable>
+
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</html>

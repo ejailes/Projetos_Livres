@@ -1,0 +1,41 @@
+<form class="row" [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
+
+    <app-alerta class="col-md-8 offset-md-2" [alertaType]="getTipoAlerta()" [msg]="msgErro"></app-alerta>
+
+    <div class="col-md-8 offset-md-2">
+        <label class="col-form-label" labelValidation [onUpdate]="isValid('nome')" for="id_nome">Nome</label>
+        <div>
+            <input type="text" inputValidation [form]="getFieldForm('nome')" [onUpdate]="isValid('nome')" field="Nome" class="form-control"
+            name="nome" id="id_nome" formControlName="nome">
+        </div>
+    </div> 
+  
+    <div class="col-md-8 offset-md-2">
+        <div class="row">
+            <div class="col-md-6">
+                <label class="col-form-label" for="id_tipo">Tipo</label>
+                <input type="text" formControlName="tipo" field="Tipo" class="form-control" name="tipo" id="id_tipo">
+            </div>
+
+            <div class="col-md-6">
+                <label class="col-form-label" for="id_cpf_cnpj">CPF / CNPJ</label>
+                <div>
+                    <input type="text" formControlName="cpf_cnpj" field="CPF / CNPJ" class="form-control" name="cpf_cnpj" id="id_cpf_cnpj">
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+
+
+    <div class="col-md-8 offset-md-2 mt-4">
+        <div class="row">
+            <div class="col-md-8">
+                <button type="submit" class="btn btn-primary px-4 me-4">Editar</button>
+                <button type="button" (click)="onClickCancelar()" class="btn btn-secondary px-4">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+</form>
